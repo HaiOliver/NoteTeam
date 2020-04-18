@@ -7,7 +7,8 @@
         {{--Note section--}}
 
             <div class="card card-default">
-                <div class="card-header"> Create Note </div>
+                <div class="card-header"> {{ isset($note) ?'Edit Note' :'Create Note' }}
+                </div>
 
 
                 <div class="card-body">
@@ -26,15 +27,21 @@
                         </div>
 
                         @endif
-                    <form action="{{ route('note.store')}}" method="POST">
+                    <form action="{{ isset($note) ?route('note.update',$note->id) : route('note.store')}}" method="POST">
                         @csrf
+                        @if ( isset($note))
+                            @method('PUT')
+                        @endif
+
                         <div class="form-group">
                             <label>Note Content</label>
-                            <input type="text" id="noteContent" class="form-control" name="noteContent" >
+                            <input type="text" id="noteContent" class="form-control" name="noteContent" value="{{ isset($note) ? $note->noteContent : " " }}">
                         </div>
 {{--                        Button--}}
                         <div class="form-group col text-center">
-                            <button class="btn btn-success">Add Notes</button>
+                            <button class="btn btn-success">
+                                {{ isset($note)?"Update Note":"Add Note" }}
+                            </button>
                         </div>
                     </form>
                 </div>
