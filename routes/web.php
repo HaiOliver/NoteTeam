@@ -20,7 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+//Route::get('/createQuote',function (){
+//    return view('notes.createQuote');
+//});
 Route::resource('/note','NoteController');
-Route::resource('/note','QuoteController');
+
 

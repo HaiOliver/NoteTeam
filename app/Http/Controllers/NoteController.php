@@ -43,18 +43,22 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-           'noteContent'=>'required'
+           'noteContent'=>'required',
+            'quote'=>'required',
+            'link'=>'required',
+            'image'=>'required'
         ]);
 
+        $image = $request->image->store('posts');
         $nNote = new \App\Note();
 
-//        $nNote->noteContent = $request->noteContent;
-        $nNote->noteContent = request('noteContent');
+        $nNote->noteContent = $request->noteContent;
+        $nNote->quote = $request->quote;
+        $nNote->link = $request->link;
+        $nNote->image = $image;
+//        $nNote->noteContent = request('noteContent');
         $nNote->save();
-//        \App\Note::create([
-//            'noteContent'=>$request->noteContent
-//        ]);
-//        Note::create($request->all());
+//
         session()->flash('success','Note created successfully.');
         return redirect(route('note.index'));
     }
