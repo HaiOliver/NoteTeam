@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use app\Http\Requests\Note\StoreNoteRequest;
@@ -86,12 +87,12 @@ class NoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Note $note
+     * @return Factory|View
      */
-    public function edit($id)
+    public function edit(\App\Note $note)
     {
-        return view('notes.create');
+        return view('notes.create')->with('note',$note);
     }
 
     /**
@@ -101,17 +102,34 @@ class NoteController extends Controller
      * @param  Note  $note
      * @return RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request,Note $note)
+    public function update(Request $request,\App\Note $note)
     {
         $this->validate($request,[
-            'noteContent'=>'required'
+            'noteContent'=>'required',
+            'quote'=> 'required',
+            'link'=> 'required'
         ]);
 
-        $note->noteContent = $request->noteContent;
+        $data = $request->only(['noteContent','quote','link']);
 
-        $note->save();
+//        delete old one
+        if($request->hasFile('image')){
+            $image = $request->image->store('posts');
+            Storage::delete($note->image);
+            $data['image']=$image;
+        }
+
+        $note->update($data);
 
         session()->flash('success','Note update successfully');
+
+
+
+//        $note->noteContent = $request->noteContent;
+//
+//        $note->save();
+
+
 
         return redirect(route('note.index'));
 

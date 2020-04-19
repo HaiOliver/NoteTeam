@@ -40,15 +40,21 @@
 {{--                        Add Quote--}}
                         <div class="form-group">
                             <label>Quote Content</label>
-                            <input type="text" id="quote"  class="form-control" name="quote">
+                            <input type="text" id="quote"  class="form-control" name="quote" value="{{ isset($note) ? $note->quote : " " }}">
 
                         </div>
 {{--                        Add Link--}}
                         <div class="form-group">
                             <label>Link</label>
-                            <input type="text" id="link" class="form-control" name="link" >
+                            <input type="text" id="link" class="form-control" name="link" value="{{ isset($note) ? $note->link : " " }}">
                         </div>
 {{--                        Add Image--}}
+{{--                        @if(isset($note))--}}
+{{--                            <div class="form-group">--}}
+{{--                                <img src="storage/{{ $note->image }}" style="width:100% ">--}}
+
+{{--                            </div>--}}
+{{--                            @endif--}}
                         <div class="form-group">
                             <label>Images</label>
                             <input type="file" id="image" class="form-control" name="image" >
