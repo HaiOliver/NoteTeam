@@ -139,13 +139,14 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Note $note
+     * @param $id
      * @return RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \Exception
      */
-    public function destroy(Note $note)
+    public function destroy($id)
     {
-        $note->delete();
+
+//        $note= DB::table('notes')->where('id', '=', $id)->delete();
+        $note=Note::where('id',$id)->delete();
         session()->flash('success','delete successfully note.');
         return redirect(route('note.index'));
     }

@@ -27,7 +27,7 @@
                                         {{$note->noteContent}}
                                         <br>
                                         <a href="{{ route('note.edit',$note->id ) }}" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="" onclick="handleDelete({{$note->id}})" class=" btn btn-danger btn-sm"  >Delete</a>
+                                        <a href="{{ route('note.destroy',$note->id ) }}" class=" btn btn-danger btn-sm"  >Delete</a>
                                     </td>
 {{--                                    Quote--}}
                                     <td>
@@ -88,20 +88,20 @@
 
 @endsection
 
-@section('script')
+{{--@section('script')--}}
 
-    <script >
+{{--    <script >--}}
 
-        function handleDelete(id){
-            let form = document.getElementById('deleteNoteForm');
-            form.action = '/note/'+id;
-            console.log("form:"+ form.action);
-            $('#deleteModal').modal("show");
-            console.log("delete btn work: "+id);
+{{--        function handleDelete(id){--}}
+{{--            let form = document.getElementById('deleteNoteForm');--}}
+{{--            form.action = '/note/'+id;--}}
+{{--            console.log("form:"+ form.action);--}}
+{{--            $('#deleteModal').modal("show");--}}
+{{--            console.log("delete btn work: "+id);--}}
 
-        }
+{{--        }--}}
 
-    </script>
+{{--    </script>--}}
 
 
-    @endsection
+{{--    @endsection--}}
