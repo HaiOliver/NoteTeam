@@ -9,7 +9,8 @@ class Note extends Model
 //    public $timestamps = false;
     protected $fillable = ['noteContent','quote','link','image'];
 
-    public static function create(array $array)
-    {
+    public function user(){
+//        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User');
     }
 }

@@ -18,11 +18,14 @@
                             <th> Images section</th>
                         </thead>
                         <tbody>
+
+
                             @foreach($notes as $note)
                                 <tr>
 {{--                                    Note--}}
                                     <td>
                                         {{$note->noteContent}}
+                                        <br>
                                         <a href="{{ route('note.edit',$note->id ) }}" class="btn btn-info btn-sm">Edit</a>
                                         <a href="" onclick="handleDelete({{$note->id}})" class=" btn btn-danger btn-sm"  >Delete</a>
                                     </td>
@@ -34,12 +37,12 @@
 
                                     <td>
                                         <div class="embed-responsive embed-responsive-4by3">
-                                            <iframe class="embed-responsive-item" src="{{ $note->link }}"  allowfullscreen ></iframe>
+                                            <iframe class="embed-responsive-item" src="{{ $note->link }}"  allowfullscreen  ></iframe>
                                         </div>
                                     </td>
 {{--                                    Image--}}
 
-                                    <td> <img src="storage/{{ $note->image }}" width="150px" height="150px" > </td>
+                                    <td> <img src="storage/{{ $note->image }}" width="200px" height="150px" > </td>
                                 </tr>
                                 @endforeach
                         </tbody>

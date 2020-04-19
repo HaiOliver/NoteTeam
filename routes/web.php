@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/createQuote',function (){
-//    return view('notes.createQuote');
-//});
+//Route::resource('/home', 'NoteController');
 Route::resource('/note','NoteController');
 
 

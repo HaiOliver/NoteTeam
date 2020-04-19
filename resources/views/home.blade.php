@@ -16,6 +16,9 @@
 
                     You are logged in!
                 </div>
+{{--                <div class="card-body">--}}
+{{--                    <a href="{{ route('notes.index')}}" > Click to here go to Note Page</a>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

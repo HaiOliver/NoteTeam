@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use app\Note;
+use app\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use app\Http\Requests\Note\StoreNoteRequest;
@@ -19,8 +22,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-
-        return view('notes.index')->with('notes',\App\Note::all());
+        $note = DB::table('notes')->where('user_id', Auth::id())->get();
+//        return view('notes.index')->with('notes',\App\Note::all());
+        return view('notes.index')->with('notes',$note);
     }
 
     /**
@@ -30,7 +34,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return view('notes.create');
+        return view('notes.create')->with('users',\App\User::all());
     }
 
     /**
@@ -48,17 +52,22 @@ class NoteController extends Controller
             'link'=>'required',
             'image'=>'required'
         ]);
+        //        $nNote->noteContent = request('noteContent');
+//        Testing add id user
 
+        $user = Auth::user();
+//        dd($user->id);
+        $user_id = $user->id;
         $image = $request->image->store('posts');
         $nNote = new \App\Note();
-
+        $nNote->user_id = $user_id;
         $nNote->noteContent = $request->noteContent;
         $nNote->quote = $request->quote;
         $nNote->link = $request->link;
         $nNote->image = $image;
-//        $nNote->noteContent = request('noteContent');
+
         $nNote->save();
-//
+
         session()->flash('success','Note created successfully.');
         return redirect(route('note.index'));
     }
