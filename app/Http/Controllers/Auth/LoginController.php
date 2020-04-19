@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+//    Modify
+// inside LoginController class
+    use AuthenticatesUsers;
+
+// check if authenticated, then redirect to dashboard
+    protected function authenticated() {
+        if (Auth::check()) {
+            return redirect()->route('note.index');
+        }
     }
 }

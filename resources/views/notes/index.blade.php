@@ -12,9 +12,9 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <th> Note Content</th>
+                            <th> Note </th>
                             <th> Quote section</th>
-                            <th> Link section</th>
+                            <th> Video section</th>
                             <th> Images section</th>
                         </thead>
                         <tbody>
