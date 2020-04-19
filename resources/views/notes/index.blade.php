@@ -13,9 +13,9 @@
                     <table class="table">
                         <thead>
                             <th> Note </th>
-                            <th> Quote section</th>
-                            <th> Video section</th>
-                            <th> Images section</th>
+                            <th> Quote </th>
+                            <th> Video Motivation </th>
+                            <th> Images </th>
                         </thead>
                         <tbody>
 

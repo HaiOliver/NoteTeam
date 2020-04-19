@@ -22,6 +22,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  crossorigin="anonymous">
+{{--    Add css folder--}}
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
 </head>
 <body>
     <div id="app">
